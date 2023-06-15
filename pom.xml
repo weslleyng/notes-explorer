@@ -54,13 +54,13 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>${slf4j.version}</version>
-			<scope>compile</scope>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
 			<version>${slf4j.version}</version>
-			<scope>compile</scope><!-- "compile" since we can manage log levels at runtime (LOGGER POP3 command) -->
+			<scope>provided</scope><!-- "compile" since we can manage log levels at runtime (LOGGER POP3 command) -->
 		</dependency>
 		<!--dependency>
 			<groupId>org.json</groupId>
@@ -89,18 +89,18 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
-			<scope>compile</scope>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
-			<scope>compile</scope>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
 			<version>1.4.7</version>
-			<scope>compile</scope>
+			<scope>provided</scope>
 		</dependency>
 		<!-- Provided dependencies -->
 		<dependency><!-- not needed on Java 6, but transitive deps loads it anyway... -->
@@ -207,8 +207,8 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.6</maven.compiler.source>
-		<maven.compiler.target>1.6</maven.compiler.target>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
 		<slf4j.version>1.7.7</slf4j.version>
 		<spring.version>3.2.11.RELEASE</spring.version>
 	</properties>
@@ -244,7 +244,7 @@
 						<manifest>
 							<mainClass>fr.cedrik.email.MainRunner</mainClass>
 							<!--packageName>com.mycompany.app</packageName-->
-							<addClasspath>false</addClasspath>
+							<addClasspath>true</addClasspath>
 							<!--addExtensions/-->
 							<!--classpathPrefix/--><!-- This gets prefixed to all classpath entries -->
 							<!-- Starting with version 2.1, the maven-jar-plugin no longer creates the Specification and Implementation details in the manifest by default. -->
@@ -274,7 +274,7 @@
 						<manifest>
 							<mainClass>fr.cedrik.email.MainRunner</mainClass>
 							<!--packageName>com.mycompany.app</packageName-->
-							<addClasspath>false</addClasspath>
+							<addClasspath>true</addClasspath>
 							<!--addExtensions/-->
 							<!--classpathPrefix/--><!-- This gets prefixed to all classpath entries -->
 							<!-- Starting with version 2.1, the maven-jar-plugin no longer creates the Specification and Implementation details in the manifest by default. -->
@@ -300,36 +300,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!--plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-						<inherited/>
-					</execution>
-				</executions>
-			</plugin-->
-			<!--plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-project-info-reports-plugin</artifactId>
-				<configuration>
-					<reportSets>
-						<reports>
-							<report>index</report>
-							<report>summary</report>
-							<report>scm</report>
-							<report>dependencies</report>
-							<report>issue-tracking</report>
-							<report>license</report>
-							<report>modules</report>
-							<report>plugins</report>
-						</reports>
-					</reportSets>
-				</configuration>
-			</plugin-->
 		</plugins>
 	</build>
 

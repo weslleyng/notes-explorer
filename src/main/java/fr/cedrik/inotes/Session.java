@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.net.HttpCookie;
 import java.net.URI;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -161,7 +162,7 @@ public class Session implements fr.cedrik.email.spi.Session {
 			httpResponse = httpRequest.execute();
 			trace(httpRequest, httpResponse);
 			context.rememberCookies(httpRequest, httpResponse);
-			responseBody = IOUtils.toString(httpResponse.getBody(), context.getCharset(httpResponse));
+			responseBody = new String(httpResponse.getBody().readAllBytes(), StandardCharsets.UTF_8);
 			try {
 				if (! httpResponse.getStatusCode().series().equals(HttpStatus.Series.SUCCESSFUL)) {
 					logger.error("Unknown server response while authenticating user \""+context.getUserName()+"\": " + httpResponse.getRawStatusCode() + ' ' + httpResponse.getStatusText());
